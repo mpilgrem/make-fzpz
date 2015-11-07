@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module moduleId="bulb_holder_E10_with_base_5d250e1c-0849-4c8b-9985-5bf002cfb5d9" fritzingVersion="0.9.2">
+<author>Mike Pilgrem</author>
+<version>1</version>
+<title>Bulb holder (E10) with base</title>
+<url></url>
+<label>L</label>
+<date>2015-10-26</date>
+<description>A bulb holder for an E10 bulb with a base.</description>
+<tags>
+    <tag>fritzing user</tag>
+</tags>
+<properties>
+    <property name="family">Bulb holder</property>
+    <property name="type">With base</property>
+    <property name="Size">E10</property>
+</properties>
+<views>
+    <iconView>
+    <layers image="icon/bulb_holder_E10_with_base_icon.svg" >
+        <layer layerId="icon" />
+    </layers>
+</iconView>
+<breadboardView>
+    <layers image="breadboard/bulb_holder_E10_with_base_breadboard.svg" >
+        <layer layerId="breadboard" />
+    </layers>
+</breadboardView>
+<schematicView>
+    <layers image="schematic/bulb_holder_E10_with_base_schematic.svg" >
+        <layer layerId="schematic" />
+    </layers>
+</schematicView>
+<pcbView>
+    <layers image="pcb/bulb_holder_E10_with_base_pcb.svg" >
+        <layer layerId="copper0" />
+        <layer layerId="copper1" />
+        <layer layerId="silkscreen" />
+    </layers>
+</pcbView>
+</views>
+<connectors>
+    <connector type="female" id="connector0" name="pin 1" >
+        <description>pin 1</description>
+        <views>
+            <breadboardView>
+                <p svgId="connector0" layer="breadboard" />
+            </breadboardView>
+            <schematicView>
+                <p svgId="connector0pin" layer="schematic" terminalId="connector0terminal" />
+            </schematicView>
+            <pcbView>
+                <p svgId="connector0pin" layer="copper0" />
+                <p svgId="connector0pin" layer="copper1" />
+            </pcbView>
+        </views>
+    </connector>
+    <connector type="female" id="connector1" name="pin 2" >
+        <description>pin 2</description>
+        <views>
+            <breadboardView>
+                <p svgId="connector1" layer="breadboard" />
+            </breadboardView>
+            <schematicView>
+                <p svgId="connector1pin" layer="schematic" terminalId="connector1terminal" />
+            </schematicView>
+            <pcbView>
+                <p svgId="connector1pin" layer="copper0" />
+                <p svgId="connector1pin" layer="copper1" />
+            </pcbView>
+        </views>
+    </connector>
+</connectors>
+</module>

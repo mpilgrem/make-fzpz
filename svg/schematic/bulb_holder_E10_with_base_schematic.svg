@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg2"
+   viewBox="0 0 10.41045 5.1865349"
+   height="0.20419429in"
+   width="0.40986177in"
+   y="0in"
+   x="0in"
+   version="1">
+  <metadata
+     id="metadata35">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs33" />
+  <g
+     transform="translate(0.00173917,1.524)"
+     id="schematic">
+    <path
+       id="line5"
+       d="m 7.7193223,1.09998 c 0,0 -0.7100257,0.093712 -1.4637235,-0.060561 C 5.501901,0.88514509 4.4268445,0.67049309 4.3754377,0.09160831 4.324031,-0.48727647 4.6548602,-0.84610115 5.2530696,-0.85279311 5.7928152,-0.85883106 6.1950683,-0.55980942 6.1437557,0.0651974 6.0924432,0.69020421 5.0775276,0.86571433 4.2992675,1.0260617 3.5210074,1.1864091 2.66347,1.0922 2.66347,1.0922"
+       style="fill:none;stroke:#000000;stroke-width:0.1524;stroke-linecap:round" />
+    <ellipse
+       ry="2.5170677"
+       rx="2.5170369"
+       cy="1.0692676"
+       cx="5.1998124"
+       id="path4145"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.15240002;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <line
+       style="stroke:#787878;stroke-width:0.246944;stroke-linecap:round"
+       y2="1.0922"
+       x2="7.7434702"
+       y1="1.0922"
+       x1="10.2835"
+       connectorname="2"
+       id="connector1pin"
+       class="pin" />
+    <rect
+       style="fill:none;stroke:none;stroke-width:0"
+       height="9.9999997e-005"
+       width="9.9999997e-005"
+       y="1.0922"
+       x="10.2835"
+       id="connector1terminal"
+       class="terminal" />
+    <text
+       style="font-size:0.881944px;font-family:'Droid Sans';text-anchor:middle;fill:#8c8c8c;stroke:none;stroke-width:0"
+       id="text25"
+       y="0.721784"
+       x="9.0134697"
+       font-size="0.881944"
+       class="text">2</text>
+    <line
+       style="stroke:#787878;stroke-width:0.246944;stroke-linecap:round"
+       y2="1.0922"
+       x2="2.66347"
+       y1="1.0922"
+       x1="0.123472"
+       connectorname="1"
+       id="connector0pin"
+       class="pin" />
+    <rect
+       style="fill:none;stroke:none;stroke-width:0"
+       height="9.9999997e-005"
+       width="9.9999997e-005"
+       y="1.0922"
+       x="0.123472"
+       id="connector0terminal"
+       class="terminal" />
+    <text
+       style="font-size:0.881944px;font-family:'Droid Sans';text-anchor:middle;fill:#8c8c8c;stroke:none;stroke-width:0"
+       id="text29"
+       y="0.721784"
+       x="1.39347"
+       font-size="0.881944"
+       class="text">1</text>
+  </g>
+</svg>
