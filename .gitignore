@@ -1,3 +1,8 @@
+# Example files
+/*.fzpz
+/svg/
+/part/
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
