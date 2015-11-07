@@ -37,10 +37,16 @@ Function yesNo($title, $message, $yesMessage, $noMessage, [bool]$yesDefault) {
     $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, `
         $no)
     If ($yesDefault) {
-        $host.ui.PromptForChoice($title, $message, $options, 0) }
+        $host.ui.PromptForChoice($title, $message, $options, 0)
+    }
     Else {
-        $host.ui.PromptForChoice($title, $message, $options, 1) }  
+        $host.ui.PromptForChoice($title, $message, $options, 1)
+    }  
 }
+
+# Arrays for four views and associated *.svg files
+[string[]]$views = "icon", "breadboard", "schematic", "pcb"
+$files = @()
 
 # Check *.fzp exists in \part directory
 [bool]$isError = $false
@@ -48,51 +54,39 @@ Function yesNo($title, $message, $yesMessage, $noMessage, [bool]$yesDefault) {
 If (Test-Path $fzp) {
     $xml = [xml](Get-Content $fzp)
     # Process XML. Note: The XML file content is assumed to be valid.
-    $views = $xml.module.views
-    $icon_path = "svg\"+$views.iconView.layers.GetAttribute("image")
-    $breadboard_path = "svg\"+$views.breadboardView.layers.GetAttribute("image")
-    $schematic_path = "svg\"+$views.schematicView.layers.GetAttribute("image")
-    $pcb_path = "svg\"+$views.pcbView.layers.GetAttribute("image") }
+    $xmlViews = $xml.module.views
+    ForEach ($view In $views) {
+        If (!$isError) {
+            $path = "svg\"+$xmlViews."$($view)View".layers.GetAttribute("image")        
+            If (Test-Path $path) {
+                $files += Get-Item $path
+            }
+            Else {
+                Write-Host ("File $path was expected but does not exist." + `
+                    " Terminating.") -ForegroundColor Red
+                $isError = $true
+            }
+        }   
+    }
+}
 Else {
     Write-Host "File $fzp was expected but does not exist. Terminating." `
         -ForegroundColor Red
-    $isError = $true }
+    $isError = $true
+}
 
 # Check all is in order
-If (!$isError) {
-    If (Test-Path $icon_path) {
-        $icon = Get-Item $icon_path }
-    Else {
-        Write-Host ("File $icon_path was expected but does not exist." + `
-            " Terminating.") -ForegroundColor Red
-        $isError = $true }
-}
-
-If (!$isError) {
-    If (Test-Path $breadboard_path) {
-        $breadboard = Get-Item $breadboard_path }
-    Else {
-        Write-Host ("File $breadboard_path was expected but does not exist." + `
-            "Terminating.") -ForegroundColor Red
-        $isError = $true }
-}
-    
-If (!$isError) {
-    If (Test-Path $schematic_path) {
-        $schematic = Get-Item $schematic_path }
-    Else {
-        Write-Host ("File $schematic_path was expected but does not exist." + `
-            "Terminating.") -ForegroundColor Red
-        $isError = $true }
-}
-    
-If (!$isError) {
-    If (Test-Path $pcb_path) {
-        $pcb = Get-Item $pcb_path }
-    Else {
-        Write-Host ("File $pcb_path was expected but does not exist. " + `
-            "Terminating.") -ForegroundColor Red
-    $isError = $true }
+ForEach ($path In $paths) {
+    If (!$isError) {
+        If (Test-Path $path) {
+            $files += Get-Item $path
+        }
+        Else {
+            Write-Host ("File $path was expected but does not exist." + `
+                " Terminating.") -ForegroundColor Red
+            $isError = $true
+        }
+    }
 }
 
 # Check *.fzpz does not already exist
@@ -117,9 +111,11 @@ If (!$isError -and (Test-Path $part)) {
         "exists. If you continue, it will be deleted. Do you want to " + `
         "continue?") -yesMessage ("make-fzpz will continue, deleting " + `
         "directory $part.") -noMessage "make-fzpz will terminate." -yesDefault `
-        $false)) {
+        $false))
+    {
         $isError=$true
-        Write-Host "Terminating." -ForegroundColor Red }
+        Write-Host "Terminating." -ForegroundColor Red
+    }
 }
 
 If (!$isError) {
@@ -127,17 +123,15 @@ If (!$isError) {
     [void](New-Item $part -ItemType directory -Force)
     
     Copy-Item part\$part.fzp -Destination $part\part.$part.fzp
-    Copy-Item $icon -Destination $part\svg.icon.$($icon.BaseName).svg
-    Copy-Item $breadboard -Destination `
-        $part\svg.breadboard.$($breadboard.BaseName).svg
-    Copy-Item $schematic -Destination `
-        $part\svg.schematic.$($schematic.BaseName).svg
-    Copy-Item $pcb -Destination $part\svg.pcb.$($pcb.BaseName).svg
+    ForEach ($file in $files) {
+        Copy-Item $file -Destination $part\svg.icon.$($file.BaseName).svg
+    }
     Add-Type -assembly "system.io.compression.filesystem"
     [io.compression.zipfile]::CreateFromDirectory("$pwd\$part", "$pwd\$fzpz")
     Remove-Item $part\*.*
     Remove-Item $part
-    Get-ChildItem $fzpz}
+    Get-ChildItem $fzpz
+}
 
 <# -----------------------------------------------------------------------------
    Copyright (c) 2015, Mike Pilgrem
