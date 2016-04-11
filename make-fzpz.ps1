@@ -123,8 +123,8 @@ If (!$isError) {
     [void](New-Item $part -ItemType directory -Force)
     
     Copy-Item part\$part.fzp -Destination $part\part.$part.fzp
-    ForEach ($file in $files) {
-        Copy-Item $file -Destination $part\svg.icon.$($file.BaseName).svg
+    For($i=0; $i -lt 4; $i++) {
+        Copy-Item $files[$i] -Destination $part\svg.$($views[$i]).$($files[$i].BaseName).svg
     }
     Add-Type -assembly "system.io.compression.filesystem"
     [io.compression.zipfile]::CreateFromDirectory("$pwd\$part", "$pwd\$fzpz")
